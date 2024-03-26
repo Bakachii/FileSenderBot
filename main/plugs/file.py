@@ -55,7 +55,7 @@ async def get_messages(client, message_ids):
     return messages
 
 
-@Client.on_message(filters.private & filters.user(DEVS) & ~filters.regex(r'^/'))
+@Client.on_message(filters.private & filters.user(DEVS) & ~filters.regex('^/'))
 async def channel_post(client: Client, message: Message):
     reply_text = await message.reply_text("Please Wait...!", quote = True)
     try:
