@@ -52,7 +52,7 @@ else:
     except ValueError:
         raise Exception("Your OWNER_ID variable is not a valid integer.")
     try: 
-        DEVS = {int(x) for x in vars.DEV_USERS or []}
+        DEVS = {int(x) for x in vars.DEVS or []}
     except ValueError:
         raise Exception("Your sudo or dev users list does not contain valid integers.")
     
