@@ -8,7 +8,7 @@ from main import DEVS, CHANNEL, BOT_USERNAME, encode, gplinks
 from main.funcs import get_message_id 
 from mongodb.users import Users   
 
-@Client.on_message(filters.private & filters.user(DEVS) & ~filters.regex('^/'), group=89)
+@Client.on_message(filters.private & filters.user(DEVS) & ~filters.regex(r'^/'))
 async def channel_post(client: Client, message: Message):
     reply_text = await message.reply_text("Please Wait...!", quote = True)
     try:
@@ -35,7 +35,7 @@ async def channel_post(client: Client, message: Message):
     await reply_text.edit_text(f"• Encoded links\n﹂Link:\n`{link}`\n﹂GpLink:\n`{gplink}`", reply_markup=reply_markup)
 
 
-@Client.on_message(filters.private & filters.command("batch") & filters.user(DEVS), group=90)
+@Client.on_message(filters.private & filters.command("batch") & filters.user(DEVS), group=20)
 async def batch(client: Client, message: Message):
     while True:
         try:
@@ -75,6 +75,7 @@ async def batch(client: Client, message: Message):
     )
     await second_message.reply_text(f"• Encoded links\n﹂Link:\n`{link}`\n﹂GpLink:\n`{gplink}`", quote=True, reply_markup=reply_markup)
 
+
 @Client.on_message(filters.private & filters.user(DEVS) & filters.command("link"), group=18)    
 async def link_generator(client: Client, message: Message):
     while True:
@@ -101,3 +102,4 @@ async def link_generator(client: Client, message: Message):
         ] 
     )
     await message.edit_text(f"• Encoded links\n﹂Link:\n`{link}`\n﹂GpLink:\n`{gplink}`", reply_markup=reply_markup)
+
