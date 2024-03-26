@@ -17,7 +17,7 @@ b<b> FileSenderBot </b>
 
 <h3 align="center">Deployment</h3>
 
-  - Heroku: [Click Here](https://dashboard.heroku.com/new?template=https://github.com/Bakachii/FileSenderBot)
+  - [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://dashboard.heroku.com/new?template=https://github.com/Bakachii/FileSenderBot)
   - `Other hosting methods will be provided later.`
 
 ----
