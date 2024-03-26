@@ -19,20 +19,24 @@
 
   - [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://dashboard.heroku.com/new?template=https://github.com/Bakachii/FileSenderBot)
   - `Other hosting methods will be provided later.`
-<h4 align="center">Commands</h4>
+  
+<h3> Commands </h3>
+
   - `start`: to start the bot 
   - `ping`, `speed`: to check bot speed 
   - `batch`: to create one link for multiple files
   - `link`: to create specific link for specific file
-  - `adding`
+  - `fcast`, `fmsg`, `forward`, `forwardmessage` : to do forward broadcast
+  - `broadcast`
+    
 ----
 
 <h4> License </h4>
 
 [![License](https://www.gnu.org/graphics/gplv3-or-later.png)](LICENSE)   
-SpamX is licensed under [GNU Affero General Public License](https://www.gnu.org/licenses/gplv3-or-later.pngl) v3 or later.
+File Sender Bot is licensed under [GNU Affero General Public License](https://www.gnu.org/licenses/gplv3-or-later.pngl) v3 or later.
 
-<h3>Credits</h3>
+<h4>Credits</h4>
 
   - <b> [Bakachii](https://github.com/Bakachii) : Dev/creator of FileSenderBot </b>
   - <b> [Rizoel](https://github.com/MrRizoel) : Contributor of FileSenderBot</b>
