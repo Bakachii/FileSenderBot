@@ -7,7 +7,7 @@ from pyrogram.enums import ChatMemberStatus, ParseMode
 from mongodb.users import Users
 from mongodb import protect_value, channel_button_value
 from main import DEVS, CHANNEL, CHANNEL_NAME, BOT_USERNAME, START_MSG, START_PIC, FILE_CAPTION, DB_CHANNEL, decode
-#from main.plugs.file import get_messages
+from main.funcs import get_messages
 
 protect_content_value = protect_value.find_one({})["protect_content"]
 disable_channel_button = channel_button_value.find_one({})["channel_button"]
