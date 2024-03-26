@@ -106,7 +106,7 @@ class arc(Client):
         usr_bot_me = await self.get_me()
         self.uptime = datetime.now()
         try:
-            db_channel = await self.get_chat(DB_CHANNEL)
+            db_channel = await self.get_chat(int(DB_CHANNEL))
             self.db_channel = db_channel
             test = await self.send_message(chat_id = db_channel.id, text = "Connected to Database Channel✅")        
         except Exception as e:
