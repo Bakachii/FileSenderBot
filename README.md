@@ -1,4 +1,4 @@
-b<b> FileSenderBot </b>
+### FileSenderBot 
 
 ![github card](https://github-readme-stats.vercel.app/api/pin/?username=Bakachii&repo=FileSenderBot&theme=lite)
 
