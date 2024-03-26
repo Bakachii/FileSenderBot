@@ -35,7 +35,7 @@ async def channel_post(client: Client, message: Message):
     await reply_text.edit_text(f"• Encoded links\n﹂Link:\n`{link}`\n﹂GpLink:\n`{gplink}`", reply_markup=reply_markup)
 
 
-@Client.on_message(filters.private & filters.command("batch") & filters.user(DEVS), group=20)
+@Client.on_message(filters.private & filters.command("batch") & filters.user(DEVS), group=90)
 async def batch(client: Client, message: Message):
     while True:
         try:
