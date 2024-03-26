@@ -23,11 +23,13 @@
 <h3> Commands </h3>
 
   - `start`: to start the bot 
-  - `ping`, `speed`: to check bot speed 
   - `batch`: to create one link for multiple files
   - `link`: to create specific link for specific file
-  - `fcast`, `fmsg`, `forward`, `forwardmessage` : to do forward broadcast
-  - `broadcast`
+  - `ping` `speed`: to check bot speed
+  - `broadcast` `gcast`: to do broadcast
+  - `stats` `stat` `users`: to check statistics of bot
+  - `fcast` `fmsg` `forward` `forwardmessage` : to do forward broadcast
+
     
 ----
 
