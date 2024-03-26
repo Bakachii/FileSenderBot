@@ -4,19 +4,19 @@ from pyrogram.types import Message
 from mongodb.users import Users
 from main import DEVS
 
-@Client.on_message(filters.private & filters.command(["ping", "speed"]) & filters.user(DEVS), group=12)
+@Client.on_message(filters.command(["ping", "speed"]) & filters.private & filters.user(DEVS), group=12)
 async def pong(_, message: Message):   
    start = datetime.datetime.now()
    end = datetime.datetime.now()
    ms = (end-start).microseconds / 1000
    await message.reply(f"**PONG:** {ms}ms")
 
-@Client.on_message(filters.private & filters.command(["stats", "stat", "users"]) & filters.user(DEVS), group=14)
+@Client.on_message(filters.command(["stats", "stat", "users"]) & filters.private & filters.user(DEVS), group=14)
 async def status(_, message: Message):   
    x = await message.reply("fetching stats....")
    await x.edit_text(f"**Total Users in bot:** `{Users.count()}`")
 
-@Client.on_message(filters.command(["broadcast", "gcast"]) & filters.user(DEVS), group=19)
+@Client.on_message(filters.command(["broadcast", "gcast"]) & filters.private & filters.user(DEVS), group=19)
 async def gcast_(_, e: Message):
     txt = ' '.join(e.command[1:])
     if txt:
