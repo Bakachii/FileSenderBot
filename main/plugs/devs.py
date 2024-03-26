@@ -4,14 +4,14 @@ from pyrogram.types import Message
 from mongodb.users import Users
 from main import DEVS
 
-@Client.on_message(filters.private & filters.user(DEVS) & filters.command(["ping", "speed"]), group=12)
+@Client.on_message(filters.private & filters.command(["ping", "speed"]) & filters.user(DEVS), group=12)
 async def pong(_, message: Message):   
    start = datetime.datetime.now()
    end = datetime.datetime.now()
    ms = (end-start).microseconds / 1000
    await message.reply(f"**PONG:** {ms}ms")
 
-@Client.on_message(filters.private & filters.user(DEVS) & filters.command(["stats", "stat", "users"]), group=14)
+@Client.on_message(filters.private & filters.command(["stats", "stat", "users"]) & filters.user(DEVS), group=14)
 async def status(_, message: Message):   
    x = await message.reply("fetching stats....")
    await x.edit_text(f"**Total Users in bot:** `{Users.count()}`")
