@@ -69,7 +69,7 @@ else:
     TOKEN = vars.TOKEN
     shortner_api = keys.shortner_api
 
-DEVS.append(OWNER_ID)
+DEVS.add(OWNER_ID)
 
 def gplinks(query):
     x = requests.get(f'https://gplinks.in/api?api={shortner_api}&url={query}', headers=keys.s_header).json()
