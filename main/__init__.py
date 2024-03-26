@@ -22,6 +22,8 @@ async def decode(base64_string):
     string = string_bytes.decode("ascii")
     return string   
 
+ENV = bool(os.environ.get("ENV", False))
+
 if ENV:
     TOKEN = os.environ.get("TOKEN", None)
     try:
