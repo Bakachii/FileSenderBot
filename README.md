@@ -26,6 +26,7 @@
   - `batch`: to create one link for multiple files
   - `link`: to create specific link for specific file
   - `ping` `speed`: to check bot speed
+  - `settings` : to set up settings 
   - `broadcast` `gcast`: to do broadcast
   - `stats` `stat` `users`: to check statistics of bot
   - `fcast` `fmsg` `forward` `forwardmessage` : to do forward broadcast
