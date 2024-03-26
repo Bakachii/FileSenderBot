@@ -7,7 +7,7 @@ from pyrogram.enums import ChatMemberStatus, ParseMode
 from mongodb.users import Users
 from mongodb import protect_value, channel_button_value
 from main import DEVS, CHANNEL, CHANNEL_NAME, BOT_USERNAME, START_MSG, START_PIC, FILE_CAPTION, DB_CHANNEL, decode
-from main.funcs import get_messages
+from main.funcs import get_messages, get_message_id
 
 protect_content_value = protect_value.find_one({})["protect_content"]
 disable_channel_button = channel_button_value.find_one({})["channel_button"]
@@ -52,52 +52,6 @@ async def join_message(client: Client, message: Message):
         quote=True,
         disable_web_page_preview=True
     )
-
-async def get_message_id(client, message):
-    if message.forward_from_chat:
-        if message.forward_from_chat.id == client.db_channel.id:
-            return message.forward_from_message_id
-        else:
-            return 0
-    elif message.forward_sender_name:
-        return 0
-    elif message.text:
-        pattern = r"https://t.me/(?:c/)?(.*)/(\d+)"
-        matches = re.match(pattern,message.text)
-        if not matches:
-            return 0
-        channel_id = matches.group(1)
-        msg_id = int(matches.group(2))
-        if channel_id.isdigit():
-            if f"-100{channel_id}" == str(client.db_channel.id):
-                return msg_id
-        else:
-            if channel_id == client.db_channel.username:
-                return msg_id
-    else:
-        return 0
-
-async def get_messages(client, message_ids):
-    messages = []
-    total_messages = 0
-    while total_messages != len(message_ids):
-        temp_ids = message_ids[total_messages:total_messages+200]
-        try:
-            msgs = await client.get_messages(
-                chat_id=client.db_channel.id,
-                message_ids=temp_ids
-            )
-        except FloodWait as e:
-            await asyncio.sleep(e.x)
-            msgs = await client.get_messages(
-                chat_id=client.db_channel.id,
-                message_ids=temp_ids
-            )
-        except Exception as e:
-            print(f"Error fetching messages: {e}")
-        total_messages += len(temp_ids)
-        messages.extend(msgs)
-    return messages
 
 @Client.on_message(filters.incoming & filters.private, group=-1)
 async def must_join_channels(client: Client, message: Message):   
