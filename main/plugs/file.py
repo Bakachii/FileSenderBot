@@ -1,7 +1,7 @@
 import re
 import asyncio
 from pyrogram import filters
-from pyromod import Client
+from pyroaddon import Client
 from pyrogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton, CallbackQuery
 from pyrogram.errors import ChatAdminRequired, FloodWait
 from pyrogram.enums import ParseMode
