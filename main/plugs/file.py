@@ -8,7 +8,7 @@ from main import DEVS, CHANNEL, BOT_USERNAME, encode, gplinks
 from main.funcs import get_message_id 
 from mongodb.users import Users   
 
-@Client.on_message(filters.private & filters.user(DEVS) & ~filters.regex('^/'))
+@Client.on_message(filters.private & filters.user(DEVS) & ~filters.regex('^/'), group=89)
 async def channel_post(client: Client, message: Message):
     reply_text = await message.reply_text("Please Wait...!", quote = True)
     try:
