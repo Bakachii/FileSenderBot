@@ -1,4 +1,4 @@
-<b> FileSenderBot </b>
+b<b> FileSenderBot </b>
 
 ![github card](https://github-readme-stats.vercel.app/api/pin/?username=Bakachii&repo=FileSenderBot&theme=lite)
 
@@ -17,7 +17,7 @@
 
 <h3 align="center">Deployment</h3>
 
-  - Heroku: [Click Here](https://github.com/RiZoeLX/SpamX/blob/main/resources/heroku.md)
+  - Heroku: [Click Here](https://dashboard.heroku.com/new?template=https://github.com/Bakachii/FileSenderBot)
   - `Other hosting methods will be provided later.`
 
 ----
