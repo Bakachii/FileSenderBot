@@ -19,7 +19,12 @@
 
   - [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://dashboard.heroku.com/new?template=https://github.com/Bakachii/FileSenderBot)
   - `Other hosting methods will be provided later.`
-
+<h4 align="center">Commands</h4>
+  - `start`: to start the bot 
+  - `ping`, `speed`: to check bot speed 
+  - `batch`: to create one link for multiple files
+  - `link`: to create specific link for specific file
+  - `adding`
 ----
 
 <h4> License </h4>
