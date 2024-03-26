@@ -42,7 +42,7 @@
           "description": "DEVS id or don't have then leave this var as it is.",
           "value": "6823076870 5884884766",
           "required": false 
-        }
+        },
         "DB_CHANNEL": {
             "description": "ID Of Database Channel.",
             "value": "",
@@ -67,7 +67,7 @@
           "description": "set your custom file caption"
           "value": "Here is your file\nJoin: @UnchainedHanime"
           "required": true 
-        } 
+        },
         "CHANNEL": {
             "description": "add your force sub channel username without @ Ex- UnchainedHanime",
             "value": "",
