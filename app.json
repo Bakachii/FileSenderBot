@@ -64,8 +64,8 @@
             "required": true
         },
         "FILE_CAPTION": {
-          "description": "set your custom file caption"
-          "value": "Here is your file\nJoin: @UnchainedHanime"
+          "description": "set your custom file caption",
+          "value": "Here is your file\nJoin: @UnchainedHanime",
           "required": true 
         },
         "CHANNEL": {
