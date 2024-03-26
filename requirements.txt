@@ -1,0 +1,6 @@
+pyrogram==2.0.106
+pyromod
+requests
+tgcrypto 
+pymongo
+motor

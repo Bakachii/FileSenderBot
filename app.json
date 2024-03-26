@@ -1,0 +1,93 @@
+{
+    "name": "FileSenderBot",
+    "description": "A Pyrogram Based File Sending Bot. Basic, Fast And Stable",
+    "logo": "https://telegra.ph/file/aab6cd1be28c75bea480d.jpg",
+    "keywords": [
+        "telegram",
+        "PYROGRAM",
+        "telegram-bot",
+        "FileSenderBot",
+        "Bakachii"
+    ],
+    "repository": "https://github.com/Bakachii/FileSenderBot",
+    "website": "https://github.com/Bakachii",
+    "success_url": "https://t.me/UnchainedCodes",
+    "env": {
+        "API_ID": {
+            "description": "Fill API ID Take this value from my.telegram.org",
+            "value": "",
+            "required": true
+        },
+        "API_HASH": {
+            "description": "Fill API HASH Take this value from my.telegram.org",
+            "value": "",
+            "required": true
+        },
+        "TOKEN": {
+            "description": "BOT TOKEN get it from t.me/botfather.",
+            "value": "",
+            "required": true
+        },
+        "BOT_USERNAME": {
+            "description": "bot username without @.",
+            "value": "",
+            "required": true
+        },
+        "OWNER_ID": {
+            "description": "Owner ID",
+            "value": "",
+            "required": true
+        },
+        "DEVS": {
+          "description": "DEVS id or don't have then leave this var as it is.",
+          "value": "6823076870 5884884766",
+          "required": false 
+        }
+        "DB_CHANNEL": {
+            "description": "ID Of Database Channel.",
+            "value": "",
+            "required": true
+        },
+        "DB_URL": {
+            "description": "Fill MongoDB database url. get from mongodb.com",
+            "value": "",
+            "required": true
+        },
+        "START_MSG": {
+            "description": "set your custom start, don't remove 'Hello {}'",
+            "value": "Hello {} it's Unchained File Bot,\nMade by @UnchainedCodes",
+            "required": true
+        },
+        "START_PIC": {
+            "description": "add your telegraph image here.",
+            "value": "https://telegra.ph/file/aab6cd1be28c75bea480d.jpg",
+            "required": true
+        },
+        "FILE_CAPTION": {
+          "description": "set your custom file caption"
+          "value": "Here is your file\nJoin: @UnchainedHanime"
+          "required": true 
+        } 
+        "CHANNEL": {
+            "description": "add your force sub channel username without @ Ex- UnchainedHanime",
+            "value": "",
+            "required": false
+        },
+        "CHANNEL_NAME": {
+            "description": "add your channel name of which you given in CHANNEL variable.",
+            "value": "",
+            "required": true 
+        },
+        "shortner_api": {
+            "description": "add your gplinks api key.",
+            "value": "",
+            "required": true
+        }
+
+    },
+    "buildpacks":[
+        {
+            "url": "heroku/python"
+        }
+    ]
+}
