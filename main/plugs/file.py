@@ -55,8 +55,10 @@ async def get_messages(client, message_ids):
     return messages
 
 
-@Client.on_message(filters.private & filters.user(DEVS) & ~filters.regex('^/'))
+@Client.on_message(filters.private & filters.all & filters.user(DEVS)) #& ~filters.regex('^/'))
 async def channel_post(client: Client, message: Message):
+    if message.text.startswith("/"):
+        return
     reply_text = await message.reply_text("Please Wait...!", quote = True)
     try:
         post_message = await message.copy(chat_id = client.db_channel.id, disable_notification=True)
