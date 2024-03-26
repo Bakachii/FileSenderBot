@@ -31,9 +31,11 @@ if ENV:
     except ValueError:
         raise Exception("Your OWNER_ID env variable is not a valid integer.")
     try:
-        DEVS = {int(x) for x in os.environ.get("DEVS", "").split()}
+        DEVS=[]
+        for x in (os.environ.get("DEVS", None).split()):
+            DEVS.append(int(x))
     except ValueError:
-        raise Exception("Your sudo or dev users list does not contain valid integers.")
+        raise Exception("Your devs list does not contain valid integers.")
 
     BOT_USERNAME = os.environ.get("BOT_USERNAME", None)
     FILE_CAPTION = os.environ.get("FILE_CAPTION", None)
@@ -69,7 +71,8 @@ else:
     TOKEN = vars.TOKEN
     shortner_api = keys.shortner_api
 
-DEVS.add(OWNER_ID)
+
+DEVS.append(OWNER_ID)
 
 def gplinks(query):
     x = requests.get(f'https://gplinks.in/api?api={shortner_api}&url={query}', headers=keys.s_header).json()
