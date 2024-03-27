@@ -48,6 +48,7 @@ if ENV:
     API_ID = os.environ.get("API_ID", None)
     API_HASH = os.environ.get("API_HASH", None)
     shortner_api = os.environ.get("shortner_api", None)
+    SECONDS = int(os.environ.get("SECONDS", None))
 else:
     try:        
         OWNER_ID = int(vars.OWNER_ID)
@@ -66,6 +67,7 @@ else:
     API_HASH = vars.API_HASH
     TOKEN = vars.TOKEN
     shortner_api = keys.shortner_api
+    SECONDS = vars.SECONDS
 
 DEVS.append(OWNER_ID)
 
