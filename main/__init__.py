@@ -53,11 +53,7 @@ else:
         OWNER_ID = int(vars.OWNER_ID)
     except ValueError:
         raise Exception("Your OWNER_ID variable is not a valid integer.")
-    try: 
-        DEVS = {int(x) for x in vars.DEVS or []}
-    except ValueError:
-        raise Exception("Your sudo or dev users list does not contain valid integers.")
-    
+    DEVS = vars.DEVS
     FILE_CAPTION = vars.FILE_CAPTION
     BOT_USERNAME = vars.BOT_USERNAME
     DB_URL = db.DB_URL
@@ -70,7 +66,6 @@ else:
     API_HASH = vars.API_HASH
     TOKEN = vars.TOKEN
     shortner_api = keys.shortner_api
-
 
 DEVS.append(OWNER_ID)
 
