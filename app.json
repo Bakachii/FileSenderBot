@@ -82,8 +82,13 @@
             "description": "add your gplinks api key.",
             "value": "",
             "required": true
-        },
-      "ENV": {
+        },            
+        "SECONDS": {
+            "description": "add number of seconds of deleting file after sending",
+            "value": "360",
+            "required": true
+        },      
+        "ENV": {
          "description": "Setting this to ANYTHING will enable environment variables. Leave it as it is",
          "value": "ANYTHING"
       }
