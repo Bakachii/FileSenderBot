@@ -79,7 +79,7 @@ async def must_join_channels(client: Client, message: Message):
       )
       await message.stop_propagation()
         
-            
+
 @Client.on_message(filters.private & filters.command("start"))
 async def start(client: Client, message: Message):
     chat = message.chat
@@ -125,6 +125,7 @@ async def start(client: Client, message: Message):
                 await message.reply_text("Something went wrong..!")
                 return
             await temp_msg.delete()
+            sent_msgs = []
             for msg in messages:
                 if bool(FILE_CAPTION) and bool(msg.document):
                     original_caption = "" if not msg.caption else msg.caption.html
@@ -146,8 +147,7 @@ async def start(client: Client, message: Message):
                         reply_markup=reply_markup,
                         protect_content=protect_content_value,
                     )
-                    await asyncio.sleep(SECONDS)
-                    await sent_msg.delete()  # Delete the sent message
+                    sent_msgs.append(sent_msg) 
                 except FloodWait as e:
                     await asyncio.sleep(e.x)
                     sent_msg = await msg.copy(
@@ -157,8 +157,11 @@ async def start(client: Client, message: Message):
                         reply_markup=reply_markup,
                         protect_content=protect_content_value,
                     )
+                    sent_msgs.append(sent_msg)  
+            for sent_msg in sent_msgs:
+                try: 
                     await asyncio.sleep(SECONDS)
-                    await sent_msg.delete()  # Delete the sent message
+                    await sent_msg.delete()
                 except Exception as e:
                     print("Error in processing start command:", str(e))
         except Exception as e:
