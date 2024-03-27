@@ -84,7 +84,7 @@ async def link_generator(client: Client, message: Message):
 
 @Client.on_message(filters.private & filters.user(DEVS) & ~filters.regex(r'^/'))
 async def channel_post(client: Client, message: Message):
-    if isTask:
+    if isTask is True:
         return
     else:
         reply_text = await message.reply_text("Please Wait...!", quote = True)
