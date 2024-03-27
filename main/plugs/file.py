@@ -8,7 +8,6 @@ from main import DEVS, CHANNEL, BOT_USERNAME, encode, gplinks
 from main.funcs import get_message_id 
 from mongodb.users import Users   
 
-
 @Client.on_message(filters.private & filters.command("batch") & filters.user(DEVS), group=20)
 async def batch(client: Client, message: Message):
     while True:
@@ -49,15 +48,14 @@ async def batch(client: Client, message: Message):
     )
     await second_message.reply_text(f"• Encoded links\n﹂Link:\n`{link}`\n﹂GpLink:\n`{gplink}`", quote=True, reply_markup=reply_markup)
     
-
 @Client.on_message(filters.private & filters.user(DEVS) & filters.command("link"), group=18)    
 async def link_generator(client: Client, message: Message):
     while True:
         try:
-            channel_message = await client.ask(text = "Forward Message from the DB Channel (with Quotes)..\nor Send the DB Channel Post link", chat_id = message.from_user.id, filters=(filters.forwarded | (filters.text & ~filters.forwarded)), timeout=60)
+            channel_message = await client.ask(text="Forward Message from the DB Channel (with Quotes)..\nor Send the DB Channel Post link", chat_id = int(message.from_user.id), filters=(filters.forwarded | (filters.text & ~filters.forwarded)), timeout=60)
         except:
             return
-        msg_id = await get_message_id(int(client, channel_message))  
+        msg_id = await get_message_id(client, channel_message)
         if msg_id:
             break
         else:
