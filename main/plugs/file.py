@@ -57,8 +57,7 @@ async def link_generator(client: Client, message: Message):
             channel_message = await client.ask(text = "Forward Message from the DB Channel (with Quotes)..\nor Send the DB Channel Post link", chat_id = message.from_user.id, filters=(filters.forwarded | (filters.text & ~filters.forwarded)), timeout=60)
         except:
             return
-        get_id = await get_message_id(client, channel_message)    
-        msg_id = int(get_id)
+        msg_id = await get_message_id(int(client, channel_message))  
         if msg_id:
             break
         else:
