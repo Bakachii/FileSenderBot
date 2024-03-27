@@ -98,15 +98,15 @@ async def channel_post(client: Client, message: Message):
             await reply_text.edit_text("Something went Wrong..!")
             return
             
-     base64_string = await encode(f"{BOT_USERNAME}-{post_message.id * abs(client.db_channel.id)}")
-     link = f"https://t.me/{client.username}?start={base64_string}"
-     gplink = gplinks(link)
-     reply_markup = InlineKeyboardMarkup(
-             [
-                 [
-                     InlineKeyboardButton("Direct Link", url=link),
-                     InlineKeyboardButton("Gplink", url=gplink)
-                 ]
-             ]
-     )
-     await reply_text.edit_text(f"• Encoded links\n﹂Link:\n`{link}`\n﹂GpLink:\n`{gplink}`", reply_markup=reply_markup)
+    base64_string = await encode(f"{BOT_USERNAME}-{post_message.id * abs(client.db_channel.id)}")
+    link = f"https://t.me/{client.username}?start={base64_string}"
+    gplink = gplinks(link)
+    reply_markup = InlineKeyboardMarkup(
+        [
+            [
+                InlineKeyboardButton("Direct Link", url=link),
+                InlineKeyboardButton("Gplink", url=gplink)
+            ]
+        ]
+    )
+    await reply_text.edit_text(f"• Encoded links\n﹂Link:\n`{link}`\n﹂GpLink:\n`{gplink}`", reply_markup=reply_markup)
