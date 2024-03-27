@@ -58,7 +58,7 @@ async def link_generator(client: Client, message: Message):
         except:
             return
         get_id = await get_message_id(client, channel_message)    
-        msg = int(get_id)
+        msg_id = int(get_id)
         if msg_id:
             break
         else:
