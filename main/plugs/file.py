@@ -8,11 +8,9 @@ from main import DEVS, CHANNEL, BOT_USERNAME, encode, gplinks
 from main.funcs import get_message_id 
 from mongodb.users import Users   
 
-isTask = False
 
 @Client.on_message(filters.private & filters.command("batch") & filters.user(DEVS), group=20)
 async def batch(client: Client, message: Message):
-    isTask = True  # Set isTask to True at the beginning of the command
     while True:
         try:
             first_message = await client.ask(text="Forward the First Message from DB Channel (with Quote) or Send the DB Channel Post Link", chat_id=message.from_user.id, filters=(filters.forwarded | (filters.text & ~filters.forwarded)), timeout=60)
@@ -51,11 +49,9 @@ async def batch(client: Client, message: Message):
     )
     await second_message.reply_text(f"• Encoded links\n﹂Link:\n`{link}`\n﹂GpLink:\n`{gplink}`", quote=True, reply_markup=reply_markup)
     
-    isTask = False  # Set isTask to False at the end of the command
 
 @Client.on_message(filters.private & filters.user(DEVS) & filters.command("link"), group=18)    
 async def link_generator(client: Client, message: Message):
-    isTask = True # Set isTask to True at the beginning of the command
     while True:
         try:
             channel_message = await client.ask(text = "Forward Message from the DB Channel (with Quotes)..\nor Send the DB Channel Post link", chat_id = message.from_user.id, filters=(filters.forwarded | (filters.text & ~filters.forwarded)), timeout=60)
@@ -82,9 +78,10 @@ async def link_generator(client: Client, message: Message):
     await message.edit_text(f"• Encoded links\n﹂Link:\n`{link}`\n﹂GpLink:\n`{gplink}`", reply_markup=reply_markup)
     isTask = False   # Set isTask to False at the end of the command
 
+
 @Client.on_message(filters.private & filters.user(DEVS) & ~filters.regex(r'^/'))
 async def channel_post(client: Client, message: Message):
-    if isTask is True:
+    if message.forward_from_chat and message.forward_from_chat.id == client.db_channel.id:
         return
     else:
         reply_text = await message.reply_text("Please Wait...!", quote = True)
