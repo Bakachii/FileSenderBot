@@ -1,4 +1,5 @@
 import re
+import os
 import asyncio
 from pyrogram import Client, filters
 from pyrogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton
@@ -6,13 +7,20 @@ from pyrogram.errors import ChatAdminRequired, UserNotParticipant, ChatWriteForb
 from pyrogram.enums import ChatMemberStatus, ParseMode
 from mongodb.users import Users
 from mongodb import protect_value, channel_button_value
-from main import DEVS, CHANNEL, CHANNEL_NAME, BOT_USERNAME, START_MSG, START_PIC, FILE_CAPTION, DB_CHANNEL, decode
+from main import DEVS, CHANNEL, CHANNEL_NAME, BOT_USERNAME, START_MSG, START_PIC, FILE_CAPTION, DB_CHANNEL, decode, SECONDS
 from main.funcs import get_messages, get_message_id
 
 protect_content_value = protect_value.find_one({})["protect_content"]
 disable_channel_button = channel_button_value.find_one({})["channel_button"]
-
 CHANNEL_BUTTON = [[(InlineKeyboardButton(f"{CHANNEL_NAME}", url=f"https://t.me/{CHANNEL}"))]]
+
+DISABLE_CHANNEL_BUTTON = disable_channel_button
+
+# Convert total seconds to minutes and seconds
+minutes = SECONDS // 60
+seconds = SECONDS % 60
+
+TIME_CAPTION = f"\n\nNote:- Files will be deleted after {minutes}:{seconds:02} minutes, Save this file in your saved message." 
 
 async def check_sub(Client, update):
     if not CHANNEL:
@@ -71,6 +79,7 @@ async def must_join_channels(client: Client, message: Message):
       )
       await message.stop_propagation()
         
+            
 @Client.on_message(filters.private & filters.command("start"))
 async def start(client: Client, message: Message):
     chat = message.chat
@@ -95,7 +104,7 @@ async def start(client: Client, message: Message):
                 except:
                     return
                 if start <= end:
-                    ids = range(start,end+1)
+                    ids = range(start, end + 1)
                 else:
                     ids = []
                     i = start
@@ -117,28 +126,47 @@ async def start(client: Client, message: Message):
                 return
             await temp_msg.delete()
             for msg in messages:
-                if bool(FILE_CAPTION) & bool(msg.document):
-                    caption = FILE_CAPTION.format(previouscaption="" if not msg.caption else msg.caption.html, filename=msg.document.file_name)
+                if bool(FILE_CAPTION) and bool(msg.document):
+                    original_caption = "" if not msg.caption else msg.caption.html
+                    file_caption = msg.document.caption.html + TIME_CAPTION if msg.document.caption else TIME_CAPTION
+                    caption = f"{original_caption}\n\n{file_caption}" if original_caption else file_caption
                 else:
-                    caption = "" if not msg.caption else msg.caption.html
+                    caption = "" if not msg.caption else msg.caption.html + TIME_CAPTION
 
-                if CHANNEL_BUTTON:
+                if DISABLE_CHANNEL_BUTTON:
                     reply_markup = msg.reply_markup
                 else:
                     reply_markup = None
 
                 try:
-                    sent_msg = await msg.copy(chat_id=message.from_user.id, caption=caption, parse_mode=ParseMode.HTML, reply_markup=reply_markup, protect_content=protect_content_value)
-                    await asyncio.sleep(80)  # Wait for 1:20 minute
+                    sent_msg = await msg.copy(
+                        chat_id=message.from_user.id,
+                        caption=caption,
+                        parse_mode=ParseMode.HTML,
+                        reply_markup=reply_markup,
+                        protect_content=protect_content_value,
+                    )
+                    await asyncio.sleep(SECONDS)
                     await sent_msg.delete()  # Delete the sent message
                 except FloodWait as e:
                     await asyncio.sleep(e.x)
-                    sent_msg = await msg.copy(chat_id=message.from_user.id, caption=caption, parse_mode=ParseMode.HTML, reply_markup=reply_markup, protect_content=protect_content_value)
-                    await asyncio.sleep(80)  # Wait for 1:20 minute 
+                    sent_msg = await msg.copy(
+                        chat_id=message.from_user.id,
+                        caption=caption,
+                        parse_mode=ParseMode.HTML,
+                        reply_markup=reply_markup,
+                        protect_content=protect_content_value,
+                    )
+                    await asyncio.sleep(SECONDS)
                     await sent_msg.delete()  # Delete the sent message
                 except Exception as e:
                     print("Error in processing start command:", str(e))
         except Exception as e:
             print("Error in processing start command:", str(e))
     else:
-        await client.send_photo(message.chat.id, START_PIC, caption=START_MSG.format(message.from_user.mention), reply_markup=InlineKeyboardMarkup(CHANNEL_BUTTON))
+        await client.send_photo(
+            message.chat.id,
+            START_PIC,
+            caption=START_MSG.format(message.from_user.mention),
+            reply_markup=InlineKeyboardMarkup(CHANNEL_BUTTON),
+        )
